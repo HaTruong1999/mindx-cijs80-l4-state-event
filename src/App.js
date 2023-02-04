@@ -37,8 +37,7 @@ const products = [
 function App() {
   const [listCart, setListCart] = useState([]);
   const handleAddToCart = (product) => {
-    // setListCart(listCart.push(product))
-    alert(`Ban dang chon ${product.productTitle}`)
+    setListCart(prev => [...prev, product])
   }
 
   return (
@@ -61,22 +60,25 @@ function App() {
         }
       </div>
 
-      <div className='product-container'>
+      <div>
         <h3 style={{textAlign: 'center'}}>List Cart</h3>
-        {
-          listCart.length > 0 && listCart.map((product) => {
-            return (
-              <Product
-                key={product.id}
-                productImg={product.productImg}
-                productTitle={product.productTitle}
-                productPrice={product.productPrice}
-                onAddToCart={() => handleAddToCart(product)}
-              />
-            )
-          })
-        }
+        <div className='product-container'>
+          {
+            listCart.length > 0 && listCart.map((product) => {
+              return (
+                <Product
+                  key={product.id}
+                  productImg={product.productImg}
+                  productTitle={product.productTitle}
+                  productPrice={product.productPrice}
+                  onAddToCart={() => handleAddToCart(product)}
+                />
+              )
+            })
+          }
+        </div>
       </div>
+      
     </div>
   );
 }

@@ -36,8 +36,15 @@ const products = [
 
 function App() {
   const [listCart, setListCart] = useState([]);
+
   const handleAddToCart = (product) => {
     setListCart(prev => [...prev, product])
+  }
+
+  const handleRemoveCart = (product) => {
+    setListCart(prev => {
+      return prev.filter(p => p.id !== product.id);
+    })
   }
 
   return (
@@ -53,7 +60,8 @@ function App() {
                 productImg={product.productImg}
                 productTitle={product.productTitle}
                 productPrice={product.productPrice}
-                onAddToCart={() => handleAddToCart(product)}
+                type='PRODUCT'
+                onSubmit={() => handleAddToCart(product)}
               />
             )
           })
@@ -71,7 +79,8 @@ function App() {
                   productImg={product.productImg}
                   productTitle={product.productTitle}
                   productPrice={product.productPrice}
-                  onAddToCart={() => handleAddToCart(product)}
+                  type='CART'
+                  onClick={() => handleRemoveCart(product)}
                 />
               )
             })

@@ -42,6 +42,7 @@ function App() {
   }
 
   const handleRemoveCart = (product) => {
+    console.log('listCart:', listCart);
     setListCart(prev => {
       return prev.filter(p => p.id !== product.id);
     })
@@ -80,7 +81,7 @@ function App() {
                   productTitle={product.productTitle}
                   productPrice={product.productPrice}
                   type='CART'
-                  onClick={() => handleRemoveCart(product)}
+                  onSubmit={() => handleRemoveCart(product)}
                 />
               )
             })
